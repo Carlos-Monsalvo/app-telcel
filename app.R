@@ -4,7 +4,7 @@ library(dplyr)
 library(lubridate)
 library(ggplot2)
 library(scales)
-library(treemapify)
+
 library(packcircles)
 library(ggforce)
 library(prophet)
@@ -428,67 +428,16 @@ server <- function(input, output) {
       )
   })
   
-  # Marca de equipo
-  
   output$marcaEquipoPlot <- renderPlot({
-    data_plot <- data %>%
-      filter(marcaEquipo != "NA") %>%
-      count(marcaEquipo) %>%
-      mutate(porcentaje = n / sum(n))
-    
-    ggplot(data_plot, aes(
-      area = n, 
-      fill = marcaEquipo, 
-      label = paste0(marcaEquipo, "\n", scales::percent(porcentaje))
-    )) +
-      geom_treemap() +
-      geom_treemap_text(
-        aes(label = paste0(marcaEquipo, "\n", scales::percent(porcentaje))),
-        place = "centre",
-        grow = TRUE,
-        color = "white",
-        fontface = "bold",
-        size=5 #tamaño de letra
-      ) +
-      scale_fill_manual(values=c(
-        "Samsung"="#146152",
-        "Apple"="#FF5A33",
-        "Xiaomi"="#B4CF66",
-        "Motorola"="#44803F"
-      )) +
-      labs(title="Distribución por Marca de Equipo") +
-      theme(legend.position = "none",
-            plot.title = element_text(hjust=5.5, size=0.5))
+    ggplot() + 
+      annotate("text", x = 0.5, y = 0.5, label = "Gráfico no disponible") + 
+      theme_void()
   })
   
-  # Método de pago
   output$metodoPagoPlot <- renderPlot({
-    data_plot <- data %>%
-      count(metodoPago) %>%
-      mutate(porcentaje = n / sum(n))
-    
-    ggplot(data_plot, aes(
-      area = n,
-      fill = metodoPago,
-      label = paste0(metodoPago, "\n", scales::percent(porcentaje))
-    )) +
-      geom_treemap() +
-      geom_treemap_text(
-        aes(label = paste0(metodoPago, "\n", scales::percent(porcentaje))),
-        place = "centre",
-        grow = TRUE,
-        color = "white",
-        fontface = "bold",
-        size = 1  # 🔹 tamaño más pequeño
-      ) +
-      scale_fill_manual(values=c(
-        "Efectivo" = "#146152",
-        "Tarjeta" = "#FF5A33",
-        "Transferencia" = "#B4CF66"
-      )) +
-      labs(title = "Distribución por Método de Pago") +
-      theme(legend.position = "none",
-            plot.title = element_text(hjust = 0.5, size = 1))
+    ggplot() + 
+      annotate("text", x = 0.5, y = 0.5, label = "Gráfico no disponible") + 
+      theme_void()
   })
   
   # ---------- Gráficos generales ----------
