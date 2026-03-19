@@ -11,7 +11,7 @@ library(prophet)
 
 
 
-install.packages("waffle")
+
 
 set.seed(123)
 
